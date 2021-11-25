@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+<!-- Content-->
+{% block content %}
+<div class="place-select">
+    <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('id_data').setAttribute('type', 'url');document.getElementById('data-explanation').style.display='block'">
+    <input type="button" value="This Computer" onclick="document.getElementById('id_data').setAttribute('type', 'file');document.getElementById('data-explanation').style.display='none';">
+</div>
+
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="data-select">
+            <!-- onclick-->
+            <div id="file-select">
+                <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
+                {{ form.data }}
+            </div>
+
+            <div class="category-select">
+                <p>作成するデータセットを選択</p>
+                <div class="data-category">
+                    {% for field in form.category %}
+                        {{ field }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="next-btn">
+            <input type="submit" value="次へ>>">
+        </div>
+    </form>
+</div>
+<script>
+ function myFunc(n) {
+     n = n+ 10;
+     console.log(n)
+ }
+</script>
+{% endblock %}
+
+

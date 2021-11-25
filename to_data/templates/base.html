@@ -1,0 +1,41 @@
+{% load static %}
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>推奨データ作成ツール</title>
+
+    <!-- Style CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Header-->
+        <header>
+            <h1>推奨データセット作成ツール</h1>
+        </header>
+
+        <!-- Sidebar-->
+        <div class="sidebar">
+            <div class="sidebar-up">
+                <ul>
+                    <li>データを取得する</li>
+                    <li>データの整形</li>
+                    <li>データ出力設定</li>
+                </ul>
+            </div>
+            <div class="sidebar-down">
+                <ul>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content-->
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+
+    </div>
+</body>
+</html>
