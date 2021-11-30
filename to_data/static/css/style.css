@@ -41,3 +41,8 @@ i{
 ul {
   list-style: none;
 }
+
+#data-explanation {
+  display: none;
+}
+
