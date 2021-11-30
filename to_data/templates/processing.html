@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+<!-- Content-->
+{% block content %}
+<div>
+    <input type="button" value="<<最初から戻る" onClick="history.go(-1);">
+    <input type="submit" value="次へ>>">
+    <h1>{{ category }}</h1>
+    <h1>{{ file }}</h1>
+    {{ form.columns }}
+</div>
+{% endblock %}

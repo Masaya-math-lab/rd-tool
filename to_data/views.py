@@ -1,11 +1,16 @@
 from django.views import generic
-from .forms import GetData
-# from .forms import ShapingData
+from django.shortcuts import render
+from .forms import FileUpload
+from .forms import SelectColumns
 
 class IndexView(generic.FormView):
     template_name = 'index.html'
-    form_class = GetData
+    form_class = FileUpload
 
-#class ShapingView(generic.FormView):
- #   template_name = 'shaping.html'
-  #  form_class = ShapingData
+    def form_valid(self, form):
+        if 'upload' in self.request.POST:
+            context = {
+                'category': form.cleaned_data['category'],
+                'form': SelectColumns()
+            }
+            return render(self.request, 'processing.html', context)

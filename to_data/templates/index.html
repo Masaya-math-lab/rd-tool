@@ -7,8 +7,8 @@
 <!-- Content-->
 {% block content %}
 <div class="place-select">
-    <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('id_data').setAttribute('type', 'url');document.getElementById('data-explanation').style.display='block'">
-    <input type="button" value="This Computer" onclick="document.getElementById('id_data').setAttribute('type', 'file');document.getElementById('data-explanation').style.display='none';">
+    <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('id_file').setAttribute('type', 'url');document.getElementById('data-explanation').style.display='block'">
+    <input type="button" value="This Computer" onclick="document.getElementById('id_file').setAttribute('type', 'file');document.getElementById('data-explanation').style.display='none';">
 </div>
 
 <div>
@@ -18,7 +18,6 @@
             <!-- onclick-->
             <div id="file-select">
                 <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
-                {{ form.data }}
             </div>
 
             <div class="category-select">
@@ -31,16 +30,12 @@
             </div>
         </div>
         <div class="next-btn">
-            <input type="submit" value="次へ>>">
+            <input type="submit" value="次へ>>" name="upload">
         </div>
     </form>
 </div>
-<script>
- function myFunc(n) {
-     n = n+ 10;
-     console.log(n)
- }
-</script>
+<p>※これはメモです。無視してください。</p>
+<p>http://www.city.niigata.lg.jp/shisei/seisaku/it/open-data/opendata-toukei/od-jinkou/od-jyukijinkou/od-ku_danjo_nenrei/od-r03.files/2021100niigata-nenrei.csv</p>
 {% endblock %}
 
 
