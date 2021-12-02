@@ -12,12 +12,13 @@
 </div>
 
 <div>
-    <form method="post">
+    <form method="post", enctype="multipart/form-data">
         {% csrf_token %}
         <div class="data-select">
             <!-- onclick-->
             <div id="file-select">
                 <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
+                {{ form.file }}
             </div>
 
             <div class="category-select">
