@@ -7,10 +7,22 @@
 <!-- Content-->
 {% block content %}
 <div>
-    <input type="button" value="<<最初から戻る" onClick="history.go(-1);">
-    <input type="submit" value="次へ>>">
+    <div>
+        <input type="button" value="<<最初から戻る" onClick="history.go(-1);">
+        <input type="submit" value="次へ>>">
+    </div>
+
     <h1>{{ category }}</h1>
-    <h1>{{ file }}</h1>
-    {{ form.columns }}
+
+    <div>
+        <div>
+            {% for i in col %}
+                {{ form.columns }}
+            {% endfor %}
+        </div>
+        <div>
+            {{ file | safe }}
+        </div>
+    </div>
 </div>
 {% endblock %}

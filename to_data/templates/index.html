@@ -7,8 +7,8 @@
 <!-- Content-->
 {% block content %}
 <div class="place-select">
-    <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('id_file').setAttribute('type', 'url');document.getElementById('data-explanation').style.display='block'">
-    <input type="button" value="This Computer" onclick="document.getElementById('id_file').setAttribute('type', 'file');document.getElementById('data-explanation').style.display='none';">
+    <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('url-input').style.display='block';document.getElementById('file-select').style.display='none';">
+    <input type="button" value="This Computer" onclick="document.getElementById('url-input').style.display='none';document.getElementById('file-select').style.display='block';">
 </div>
 
 <div>
@@ -17,8 +17,12 @@
         <div class="data-select">
             <!-- onclick-->
             <div id="file-select">
-                <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
                 {{ form.file }}
+            </div>
+
+            <div id="url-input">
+                <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
+                {{ form.url }}
             </div>
 
             <div class="category-select">
