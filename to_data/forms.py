@@ -6,4 +6,4 @@ class FileUpload(forms.Form):
     category = forms.ChoiceField(required=True, widget=forms.RadioSelect, choices=var.CATEGORIES, initial='0')
 
 class SelectColumns(forms.Form):
-    columns = forms.ChoiceField(choices=var.CATEGORIES, required=True)
+    columns = forms.ChoiceField(choices=var.AED, required=True)
