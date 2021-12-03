@@ -15,7 +15,7 @@ class IndexView(generic.FormView):
             # カテゴリーに対応するDATASETを呼び出す
             select_form = SelectColumns()
             select_form.fields['columns'].choices = var.DATASET[form.cleaned_data['category']]
-            select_form.fields['columns'].initial = ['都道府県コード又は市区町村コード']
+            select_form.fields['columns'].initial = ['0']
 
             # "ThisComputer"のとき
             if form.cleaned_data['file']:
