@@ -8,6 +8,7 @@ import csv,io
 import pandas as pd
 import numpy as np
 from .functions import to_csv
+from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 
 def index(request):
@@ -83,6 +84,9 @@ def index(request):
             col = eval(request.POST['select_col'])
             df = pd.DataFrame(data=list, columns=col)
             file_name = request.POST['file_name']
+
+            # json形式に変換する処理
+
             response = to_csv(df, file_name)
             return response
 
