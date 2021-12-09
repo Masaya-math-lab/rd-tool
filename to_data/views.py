@@ -49,7 +49,8 @@ def index(request):
             context = {
                 'form': FileName,
                 'df': request.POST['df'],
-                'col': request.POST['col']
+                'col': request.POST['col'],
+                'select_col': request.POST.getlist('columns')
             }
             return render(request, 'download.html', context)
 
@@ -61,7 +62,8 @@ def index(request):
                     'file_name': request.POST['csv_file'],
                     'form': form,
                     'df': request.POST['df'],
-                    'col': request.POST['col']
+                    'col': request.POST['col'],
+                    'select_col': request.POST['select_col']
                 }
                 return render(request, 'download.html', context)
             elif request.POST['rdf_file']:
@@ -71,13 +73,14 @@ def index(request):
                     'file_name': request.POST['rdf_file'],
                     'form': form,
                     'df': request.POST['df'],
-                    'col': request.POST['col']
+                    'col': request.POST['col'],
+                    'select_col': request.POST['select_col']
                 }
                 return render(request, 'download.html', context)
 
         if 'download' in request.POST:
             list = eval(request.POST['df'])
-            col = eval(request.POST['col'])
+            col = eval(request.POST['select_col'])
             df = pd.DataFrame(data=list, columns=col)
             file_name = request.POST['file_name']
             response = to_csv(df, file_name)
