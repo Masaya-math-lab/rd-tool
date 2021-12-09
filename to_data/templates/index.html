@@ -5,6 +5,9 @@
 
 
 <!-- Content-->
+{% block page2_color %}white{% endblock %}
+{% block page3_color %}white{% endblock %}
+
 {% block content %}
 <div class="place-select">
     <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('url-input').style.display='block';document.getElementById('file-select').style.display='none';formReset();">
@@ -36,7 +39,7 @@
                 </div>
             </div>
             <div class="next-btn">
-                <input type="submit" value="次へ>>" name="upload">
+                <input type="submit" value="次へ>>" name="upload" id="next1">
             </div>
         </form>
     </div>

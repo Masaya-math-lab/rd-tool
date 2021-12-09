@@ -3,6 +3,9 @@
 {% load static %}
 
 <!-- Content-->
+{% block page1_color %}white{% endblock %}
+{% block page2_color %}white{% endblock %}
+
 {% block content %}
 <div class="place-select">
     <input type="button" value="CSVファイル" onclick="document.getElementById('make_csv').style.display='block';document.getElementById('make_rdf').style.display='none';">

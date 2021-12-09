@@ -109,22 +109,35 @@ input[type="button"]:hover {
    border: 1px solid #2c628b;
 }
 
-
+/*
 .download-select{
     text-align: center;
     margin: 10px;
 }
+ */
 
 form{
        /*padding:25px 50px 20px 50px;*/
 }
 
 .data-select{
-    padding:20px 10px;
+    padding:20px 20px;
     margin-bottom:30px;
     border-radius: 0.3em;      /* 角丸 */
     border: 1px solid #E8E8E8;
 }
+
+#id_file {
+    border: 0px none;
+    margin-top: 10px;
+    margin-bottom: 17px;
+}
+
+#id_url {
+    height: 30px;
+    width: 95%;
+}
+
 label{
   display: inline-block;
 }
@@ -139,13 +152,51 @@ label{
 }
 
 .data-category{
-    padding:30px;
+    padding: 18px 20px 35px 30px;
     border: 1px solid #E8E8E8;
     background-color:rgba(220,220,220,0.2);
-
 }
 
-input[type="submit"]{
-    padding:10px 30px;
+#id_category_1 {
+    margin-left: 150px;
+    margin-bottom: 12px;
+}
+
+#id_category_2 {
+    margin-left: 81px;
+}
+
+#id_category_4 {
+    margin-left: 200px;
+    margin-bottom: 12px;
+}
+
+#id_category_5 {
+    margin-left: 160px
+}
+
+#id_category_7 {
+    margin-left: 25.5px;
+    margin-bottom: 12px;
+}
+
+#id_category_8 {
+    margin-left: 145px
+}
+
+#id_category_10 {
+    margin-left: 120px;
+    margin-bottom: 12px;
+}
+
+#id_category_11 {
+    margin-left: 128px
+}
+
+#next1 {
+    padding:10px 25px;
     background-color:#E8E8E8;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
