@@ -7,11 +7,14 @@
 <!-- Content-->
 {% block content %}
 <div>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div>
             <input type="button" value="<<最初から戻る" onClick="history.go(-1);">
-            <input type="submit" value="次へ>>">
+            <!-- 非表示データ-->
+            <input type="hidden" value="{{ col }}", name="col">
+            <input type="hidden" value="{{ df }}", name="df">
+            <input type="submit" value="次へ>>" name="select">
         </div>
         <div>
             {% for i in col %}

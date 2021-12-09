@@ -8,4 +8,8 @@ class FileUpload(forms.Form):
     category = forms.ChoiceField(required=True, widget=forms.RadioSelect, choices=var.CATEGORIES, initial='0')
 
 class SelectColumns(forms.Form):
-    columns = forms.ChoiceField(required=True)
+    columns = forms.ChoiceField(required=True, initial='0')
+
+class FileName(forms.Form):
+    csv_file = forms.CharField(required=False, initial='.csv')
+    rdf_file = forms.CharField(required=False, initial='.rdf')

@@ -6,13 +6,13 @@
 
 <!-- Content-->
 {% block content %}
-<div class="place-select">
+<div>
     <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('url-input').style.display='block';document.getElementById('file-select').style.display='none';formReset();">
     <input type="button" value="This Computer" onclick="document.getElementById('url-input').style.display='none';document.getElementById('file-select').style.display='block';formReset();">
 </div>
 
 <div>
-    <form method="post", enctype="multipart/form-data" name="upload_form">
+    <form method="post" enctype="multipart/form-data" name="upload_form">
         {% csrf_token %}
         <div class="data-select">
             <!-- onclick-->

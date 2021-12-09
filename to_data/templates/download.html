@@ -2,8 +2,43 @@
 
 {% load static %}
 
-
-
 <!-- Content-->
 {% block content %}
+<div class="place-select">
+    <input type="button" value="CSVファイル" onclick="document.getElementById('make_csv').style.display='block';document.getElementById('make_rdf').style.display='none';">
+    <input type="button" value="RDFファイル" onclick="document.getElementById('make_csv').style.display='none';document.getElementById('make_rdf').style.display='block';">
+</div>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>ファイルの名前</p>
+        <div>
+        <!-- onclick-->
+            <div id="make_csv">
+                {{ form.csv_file }}
+            </div>
+            <div id="make_rdf">
+                {{ form.rdf_file }}
+            </div>
+        </div>
+        <div class="next-btn">
+            <!-- 非表示データ-->
+            <input type="hidden" value="{{ col }}", name="col">
+            <input type="hidden" value="{{ df }}", name="df">
+            <input type="submit" value="作成" name="create">
+        </div>
+    </form>
+</div>
+<div>
+{% if file_name %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ file_name }}<input type="submit" value="&#xf019;" class="fas fa-download" name="download">
+        <!-- 非表示データ-->
+        <input type="hidden" value="{{ file_name }}", name="file_name">
+        <input type="hidden" value="{{ col }}", name="col">
+        <input type="hidden" value="{{ df }}", name="df">
+    </form>
+{% endif %}
+</div>
 {% endblock %}
