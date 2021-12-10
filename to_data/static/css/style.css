@@ -2,7 +2,6 @@
 // --- リセット ---
 // ※ブラウザのデフォルトCSSをリセット
 // ***************************************** */
-
 *{
   box-sizing: border-box;
   margin: 0;
@@ -35,12 +34,11 @@ strong {
 i{
   font-style: normal;
 }
-
 /* ****************** ここから ******************* */
 #url-input {
   display: none;
 }
-
+/* ****************index.thmlに対応します************* */
 header {
     background:#2699FB;
     padding-top:20px;
@@ -48,19 +46,14 @@ header {
     padding-bottom:20px;
     color:white;
 }
-
 .content-wrapper{
     display: flex;
-
 }
-
 .sidebar{
     top: 85px;
-    height:1000px;
     background:#2699FB;
     opacity:0.44
 }
-
 .sidebar-up{
     margin-top:50px;
     margin-left: 20px;
@@ -71,15 +64,12 @@ header {
 ul{
     padding-top:80px;
 }
-
 ul li{
     margin-top:15px
 }
-
 .sidebar-down{
    margin-left: 20px;
 }
-
 .content{
     padding-top:50px;
     width:850px;
@@ -87,13 +77,25 @@ ul li{
     margin-left: auto;
     margin-right: auto;
 }
-
-/* ****************index.html*************** */
+.button-wrapper{
+    padding-bottom:12px;
+}
+/*画面をスクロールできないようにしたい*/
+#wrapper{
+    /*position: fixed;*/
+}
+/* ****************index.htmlに対応します*************** */
+#next1 {
+    padding:10px 25px;
+    background-color:#E8E8E8;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .place-select{
     text-align: center;
     margin: 0 0 30px 0;
 }
-
 input {
    /* input要素全部に対して装飾 */
    background-color:white;
@@ -102,105 +104,138 @@ input {
 input[type="button"]{
       padding:12px 60px;
 }
-
 input[type="button"]:hover {
    /* マウスが載ったとき */
-   background-image: linear-gradient(0deg, #68d3db, #e5f4fc);
-   border: 1px solid #2c628b;
+   background-image: linear-gradient(0deg, #68D3DB, #E5F4FC);
+   border: 1px solid #2C628B;
 }
-
+input[type="submit"]:hover {
+   /* マウスが載ったとき */
+   background-image: linear-gradient(0deg, #68D3DB, #E5F4FC);
+   border: 1px solid #2C628B;
+}
 /*
 .download-select{
     text-align: center;
     margin: 10px;
 }
  */
-
 form{
        /*padding:25px 50px 20px 50px;*/
 }
-
+input[type="url"]{
+    height:40px;
+    width:800px;
+}
 .data-select{
     padding:20px 20px;
     margin-bottom:30px;
     border-radius: 0.3em;      /* 角丸 */
     border: 1px solid #E8E8E8;
 }
-
 #id_file {
     border: 0px none;
     margin-top: 10px;
     margin-bottom: 17px;
 }
-
 #id_url {
     height: 30px;
     width: 95%;
 }
-
 label{
   display: inline-block;
 }
-
 .file-select{
-
 }
-
 .category-select{
     margin-top:20px;
     margin-bottom:20px;
 }
-
 .data-category{
     padding: 18px 20px 35px 30px;
     border: 1px solid #E8E8E8;
     background-color:rgba(220,220,220,0.2);
 }
-
+/************data-categoryに対応します************/
 #id_category_1 {
     margin-left: 150px;
     margin-bottom: 12px;
 }
-
 #id_category_2 {
     margin-left: 81px;
 }
-
 #id_category_4 {
     margin-left: 200px;
     margin-bottom: 12px;
 }
-
 #id_category_5 {
     margin-left: 160px
 }
-
 #id_category_7 {
     margin-left: 25.5px;
     margin-bottom: 12px;
 }
-
 #id_category_8 {
     margin-left: 145px
 }
-
 #id_category_10 {
     margin-left: 120px;
     margin-bottom: 12px;
 }
-
 #id_category_11 {
     margin-left: 128px
 }
-
-#next1 {
-    padding:10px 25px;
+/************processing.htmlに対応**********************/
+/*buttonに対応*/
+#back1{
     background-color:#E8E8E8;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    padding:12px 60px;
 }
-
+#next2 {
+    background-color:#E8E8E8;
+    padding:12px 60px;
+    float: right;/*要素を包含ブロックの左右どちらかの側に沿うように設置し、テキストやインライン要素がその周りを回りこめるように定義します*/
+}
+/*united-columnに対応*/
+.united-column{
+    width:100%;
+}
+/* column-barに対応*/
+.columns-bar{
+    padding:23px 0 23px 0;
+    padding-left:12%
+}
+#id_columns{
+    width:11.8%;
+    margin-right:0.3px;
+}
+/*tableに対応*/
+table{
+  width: 100%;
+}
+th,td{
+  height: 100px;
+  width: 11%;
+  vertical-align: middle;
+  padding: 0 15px;
+  border: 1px solid black;
+  background: #E8E8E8;
+}
+/*tableのcolumn名に対応*/
+thead {
+  position: sticky;
+  top: 0;
+  background:#707070;
+}
 #make_rdf {
     display: none;
 }
+
+
+
+
+
+
+
+
+
