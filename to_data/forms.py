@@ -11,5 +11,5 @@ class SelectColumns(forms.Form):
     columns = forms.ChoiceField(required=True, initial='0')
 
 class FileName(forms.Form):
-    csv_file = forms.CharField(required=False, initial='.csv')
-    rdf_file = forms.CharField(required=False, initial='.rdf')
+    csv_file = forms.CharField(required=False)
+    rdf_file = forms.CharField(required=False)

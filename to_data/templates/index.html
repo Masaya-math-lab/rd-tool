@@ -19,6 +19,7 @@
         <form method="post" enctype="multipart/form-data" name="upload_form">
             {% csrf_token %}
             <div class="data-select">
+                <p>{{ message }}</p>
                 <!-- onclick-->
                     <div id="file-select">
                         {{ form.file }}

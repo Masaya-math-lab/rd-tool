@@ -17,11 +17,11 @@
         <p>ファイルの名前</p>
         <div>
         <!-- onclick-->
-            <div id="make_csv">
-                {{ form.csv_file }}
+            <div id="make_csv" style="display:{{ csv_css }}">
+                {{ form.csv_file }}.csv
             </div>
-            <div id="make_rdf">
-                {{ form.rdf_file }}
+            <div id="make_rdf" style="display:{{ rdf_css }}">
+                {{ form.rdf_file }}.rdf
             </div>
         </div>
         <div class="next-btn">
