@@ -45,17 +45,17 @@ header {
     background:#2699FB;
     font-size: 20px;
     padding: 10px 15px;
-    color:white;
+    position: fixed;
+    color: white;
+    width: 100%;
 }
-
 
 .sidebar{
     float: left;
-    background:#2699FB;
-    opacity:0.44;
-    height: 93%;
+    background:#99CCFF;
+    height: 100%;
     width: 15%;
-    padding: 50px 0px 10px 20px;
+    padding: 80px 0px 10px 20px;
 }
 
 li {
@@ -79,7 +79,7 @@ li {
 /* ****************index.htmlに対応します*************** */
 #index {
     width: 1050px;
-    padding: 50px 120px 0px 80px;
+    padding: 90px 120px 0px 80px;
 }
 
 #next1 {
@@ -189,6 +189,10 @@ label{
     margin-left: 128px
 }
 /************processing.htmlに対応**********************/
+#processing {
+    margin: 40px 0px 0px 30px;
+}
+
 /*buttonに対応*/
 #back1{
     background-color:#E8E8E8;
