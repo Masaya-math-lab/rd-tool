@@ -7,11 +7,13 @@
   margin: 0;
   padding: 0;
 }
-html{
-  font-size: 16px;
+html {
+    font-size: 16px;
+    height: 100%;
 }
 body {
-  font-family: Verdana, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+    font-family: Verdana, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+    height: 100%;
 }
 header, footer, nav, menu, article, aside, section, details, figcaption, figure{
   display: block;
@@ -38,44 +40,34 @@ i{
 #url-input {
   display: none;
 }
-/* ****************index.thmlに対応します************* */
+/* ****************base.htmlに対応します************* */
 header {
     background:#2699FB;
-    padding-top:20px;
-    padding-left:5%;
-    padding-bottom:20px;
+    font-size: 20px;
+    padding: 10px 15px;
     color:white;
 }
-.content-wrapper{
-    display: flex;
-}
+
+
 .sidebar{
-    top: 85px;
+    float: left;
     background:#2699FB;
-    opacity:0.44
+    opacity:0.44;
+    height: 93%;
+    width: 15%;
+    padding: 50px 0px 10px 20px;
 }
-.sidebar-up{
-    margin-top:50px;
-    margin-left: 20px;
-    margin-right:20px;
-    width:140px;
-    height: 500px;
+
+li {
+    margin-top:13px
 }
-ul{
-    padding-top:80px;
+
+.sidebar-down a{
+    color: white;
 }
-ul li{
-    margin-top:15px
-}
-.sidebar-down{
-   margin-left: 20px;
-}
+
 .content{
-    padding-top:50px;
-    width:850px;
-    height:1500px;
-    margin-left: auto;
-    margin-right: auto;
+    overflow: hidden;
 }
 .button-wrapper{
     padding-bottom:12px;
@@ -85,6 +77,11 @@ ul li{
     /*position: fixed;*/
 }
 /* ****************index.htmlに対応します*************** */
+#index {
+    width: 1050px;
+    padding: 50px 120px 0px 80px;
+}
+
 #next1 {
     padding:10px 25px;
     background-color:#E8E8E8;
@@ -133,6 +130,12 @@ input[type="url"]{
     border-radius: 0.3em;      /* 角丸 */
     border: 1px solid #E8E8E8;
 }
+
+.error_massage {
+    font-size: 15px;
+    color: red;
+}
+
 #id_file {
     border: 0px none;
     margin-top: 10px;

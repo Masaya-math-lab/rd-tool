@@ -9,44 +9,46 @@
 {% block page3_color %}white{% endblock %}
 
 {% block content %}
-<div class="place-select">
-    <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('url-input').style.display='block';document.getElementById('file-select').style.display='none';formReset();">
-    <input type="button" value="This Computer" onclick="document.getElementById('url-input').style.display='none';document.getElementById('file-select').style.display='block';formReset();">
-</div>
+<div id="index">
+    <div class="place-select">
+        <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('url-input').style.display='block';document.getElementById('file-select').style.display='none';formReset();">
+        <input type="button" value="This Computer" onclick="document.getElementById('url-input').style.display='none';document.getElementById('file-select').style.display='block';formReset();">
+    </div>
 
-<div class="download">
-    <div class="download-select">
-        <form method="post" enctype="multipart/form-data" name="upload_form">
-            {% csrf_token %}
-            <div class="data-select">
-                <p>{{ message }}</p>
-                <!-- onclick-->
-                    <div id="file-select">
-                        {{ form.file }}
+    <div class="download">
+        <div class="download-select">
+            <form method="post" enctype="multipart/form-data" name="upload_form">
+                {% csrf_token %}
+                <div class="data-select">
+                    <div class="error_massage">
+                        <p>{{ message }}</p>
                     </div>
+                    <!-- onclick-->
+                        <div id="file-select">
+                            {{ form.file }}
+                        </div>
 
-                    <div id="url-input">
-                        <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
-                        {{ form.url }}
-                    </div>
+                        <div id="url-input">
+                            <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
+                            {{ form.url }}
+                        </div>
 
-                <div class="category-select">
-                    <p>作成するデータセットを選択</p>
-                    <div class="data-category">
-                        {% for field in form.category %}
-                            {{ field }}
-                        {% endfor %}
+                    <div class="category-select">
+                        <p>作成するデータセットを選択</p>
+                        <div class="data-category">
+                            {% for field in form.category %}
+                                {{ field }}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="next-btn">
-                <input type="submit" value="次へ>>" name="upload" id="next1">
-            </div>
-        </form>
+                <div class="next-btn">
+                    <input type="submit" value="次へ>>" name="upload" id="next1">
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-<p>※これはメモです。無視してください。</p>
-<p>http://www.city.niigata.lg.jp/shisei/seisaku/it/open-data/opendata-toukei/od-jinkou/od-jyukijinkou/od-ku_danjo_nenrei/od-r03.files/2021100niigata-nenrei.csv</p>
 
 <script>
 function formReset() {
