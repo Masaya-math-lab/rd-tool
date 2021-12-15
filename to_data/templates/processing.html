@@ -14,21 +14,23 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="button-wrapper">
-            <input type="button" value="<<最初から戻る" onClick="history.go(-1);">
+            <input type="button" value="<<最初から戻る" id="back1" onClick="history.go(-1);">
             <!-- 非表示データ-->
             <input type="hidden" value="{{ col }}", name="col">
             <input type="hidden" value="{{ df }}", name="df">
-            <input type="submit" value="次へ>>" name="select">
+            <input type="submit" value="次へ>>" id="next2" name="select">
         </div>
-        <div class="united-column">
-            <div class="columns-bar">
-            {% for i in col %}
-                {{ form.columns }}
-            {% endfor %}
+        <div class="field">
+            <div class="united-column">
+                <div class="columns-bar">
+                    {% for i in col %}
+                        {{ form.columns }}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-        <div>
-            {{ file | safe }}
+            <div class="table">
+                {{ file | safe }}
+            </div>
         </div>
     </form>
 </div>

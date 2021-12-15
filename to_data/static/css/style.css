@@ -93,14 +93,19 @@ li {
     text-align: center;
     margin: 0 0 30px 0;
 }
+
+.place-select input{
+    width: 200px;
+    padding: 5px 0px;
+}
+
 input {
    /* input要素全部に対して装飾 */
    background-color:white;
    border: 1px solid black; /* 枠線 */
 }
-input[type="button"]{
-      padding:12px 60px;
-}
+
+
 input[type="button"]:hover {
    /* マウスが載ったとき */
    background-image: linear-gradient(0deg, #68D3DB, #E5F4FC);
@@ -190,27 +195,46 @@ label{
 }
 /************processing.htmlに対応**********************/
 #processing {
-    margin: 40px 0px 0px 30px;
+    margin: 70px 0px 0px 30px;
 }
 
 /*buttonに対応*/
 #back1{
     background-color:#E8E8E8;
-    padding:12px 60px;
+    padding:7px 30px;
 }
 #next2 {
     background-color:#E8E8E8;
-    padding:12px 60px;
-    float: right;/*要素を包含ブロックの左右どちらかの側に沿うように設置し、テキストやインライン要素がその周りを回りこめるように定義します*/
+    padding:7px 30px;
+    margin-right: 30px;
+    float: right;
 }
+
+.field {
+
+}
+
+.table {
+    height: 80%;
+    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.dataframe tr th:nth-child(1){
+    font-size: 15px;
+    vertical-align: middle;
+    border: 1px solid black;
+    background: #E8E8E8;
+}
+
 /*united-columnに対応*/
-.united-column{
-    width:100%;
-}
+
 /* column-barに対応*/
 .columns-bar{
     padding:23px 0 23px 0;
-    padding-left:12%
+    white-space: nowrap;
+    overflow: scroll;
 }
 #id_columns{
     width:11.8%;
@@ -218,24 +242,25 @@ label{
 }
 /*tableに対応*/
 table{
-  width: 100%;
 }
-th,td{
-  height: 100px;
-  width: 11%;
-  vertical-align: middle;
-  padding: 0 15px;
-  border: 1px solid black;
-  background: #E8E8E8;
+
+td{
+    vertical-align: middle;
+    border: 1px solid black;
+    background: #E8E8E8;
+    width: 20%;
 }
 /*tableのcolumn名に対応*/
 thead {
-  position: sticky;
-  top: 0;
-  background:#707070;
 }
+
 #make_rdf {
     display: none;
+}
+
+thead th{
+    background: #E8E8E8;
+    white-space: nowrap;
 }
 
 
