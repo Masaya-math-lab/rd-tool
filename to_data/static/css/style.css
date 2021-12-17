@@ -159,6 +159,10 @@ label{
     margin-top:20px;
     margin-bottom:20px;
 }
+#encode-select li{
+    display: inline;
+    margin-left:20px;
+}
 .data-category{
     padding: 18px 20px 35px 30px;
     border: 1px solid #E8E8E8;
@@ -214,7 +218,7 @@ label{
 
 }
 
-.table {
+.table-box {
     height: 80%;
     overflow: scroll;
     overflow-x: scroll;
@@ -241,10 +245,7 @@ label{
     margin-right:0.3px;
 }
 /*tableに対応*/
-table{
-}
-
-td{
+table td{
     vertical-align: middle;
     border: 1px solid black;
     background: #E8E8E8;

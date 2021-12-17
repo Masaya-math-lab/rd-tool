@@ -33,7 +33,10 @@
                             <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
                             {{ form.url }}
                         </div>
-
+                        <div id ="encode-select">
+                            <p>ファイルの文字エンコードを選択してください。</p>
+                            {{form.encode}}
+                        </div>
                     <div class="category-select">
                         <p>作成するデータセットを選択</p>
                         <div class="data-category">
