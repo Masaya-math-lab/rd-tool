@@ -16,10 +16,16 @@ def index(request):
         if 'upload' in request.POST:
             # "ThisComputer"
             if request.FILES.get('file'):
-                df = pd.read_csv(io.StringIO(request.FILES['file'].read().decode('utf-8')), delimiter=',')
+                try:
+                    df = pd.read_csv(io.StringIO(request.FILES['file'].read().decode(request.POST['encode'])), delimiter=',')
+                except UnicodeDecodeError:
+                    return render(request, "index.html", {'form': FileUpload, 'message': '※ファイルを読み込めません。他の文字エンコードを選択してください。'})
             # "Web Addressed(URLs)"
             elif request.POST['url']:
-                df = pd.read_csv(request.POST['url'])
+                try:
+                    df = pd.read_csv(request.POST['url'],encoding=request.POST['encode'])
+                except UnicodeDecodeError:
+                    return render(request, "index.html", {'form': FileUpload, 'message': '※ファイルを読み込めません。他の文字エンコードを選択してください。'})
             else:
                 return render(request, "index.html", {'form': FileUpload, 'message': '※ファイルを選択してください'})
 
