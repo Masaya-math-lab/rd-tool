@@ -7,17 +7,19 @@ def to_csv(df, category, select_col, file_name):
     dic = {}
     for i, l in enumerate(select_col):
         dic.setdefault(l, []).append(df.columns[i])
+    print(dic)
 
     # 選択されたカテゴリーのデータフレームをsample_dfに格納
     sample_df = pd.DataFrame(columns=var.DATASET_COL[category])
-    sample_df.iloc[:,0] = [None]*df.shape[0]
+    sample_df.iloc[:, 0] = [None]*df.shape[0]
 
     for col in dic.keys():
         if col == 'NotUse':
             continue
         elif len(dic[col]) >= 2 or col == "備考":
+            print(col)
             for i in range(len(df)):
-                sample_df.iloc[i][col] = df.iloc[i][dic[col]].to_json(orient='columns', force_ascii=False)
+                sample_df.loc[sample_df.index[i], col] = df.loc[df.index[i], dic[col]].to_json(orient='columns', force_ascii=False)
         else:
             sample_df[col] = df[dic[col][0]]
 
