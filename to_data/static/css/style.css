@@ -21,7 +21,7 @@ header, footer, nav, menu, article, aside, section, details, figcaption, figure{
 ul, ol {
   list-style: none;
 }
-table {
+table{
   border-collapse: collapse;
 }
 img {
@@ -236,15 +236,19 @@ label{
 
 /* column-barに対応*/
 .columns-bar{
-    padding:23px 0 23px 0;
     white-space: nowrap;
     overflow: scroll;
+    margin-right
 }
 #id_columns{
-    width:11.8%;
-    margin-right:0.3px;
+    width:11.3%;
+    margin-right:-7.5px;
 }
 /*tableに対応*/
+table.dataframe{
+    table-layout: fixed;
+    width:100%;
+}
 table td{
     vertical-align: middle;
     border: 1px solid black;
