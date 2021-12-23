@@ -236,13 +236,10 @@ label{
 
 /* column-barに対応*/
 .columns-bar{
-    white-space: nowrap;
     overflow: scroll;
-    margin-left:10%
 }
 #id_columns{
-    width:12.6%;/*（tableのwidth100%/入力した列数）*/
-    margin-right:-7.5px;/*１列分空白で、id_columsを表示する*/
+    float: left;
 }
 /*tableに対応*/
 table.dataframe{
@@ -254,6 +251,7 @@ table td{
     border: 1px solid black;
     background: #E8E8E8;
     width: 20%;
+    overflow-wrap : break-word;
 }
 /*tableのcolumn名に対応*/
 thead {

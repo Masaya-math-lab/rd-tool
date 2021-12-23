@@ -2,7 +2,13 @@
 
 {% load static %}
 
+{% block css %}
+<style type="text/css">
+#id_columns {width: calc(100%/{{ num }})}
+.columns-bar {margin-left:calc(100%/{{ num }})}
+</style>
 
+{% endblock %}
 
 <!-- Content-->
 {% block page1_color %}white{% endblock %}
@@ -25,7 +31,9 @@
             <div class="united-column">
                 <div class="columns-bar">
                     {% for i in col %}
-                        {{ form.columns }}
+                        <div>
+                            {{ form.columns }}
+                        </div>
                     {% endfor %}
                 </div>
 
@@ -36,4 +44,5 @@
         </div>
     </form>
 </div>
+
 {% endblock %}
