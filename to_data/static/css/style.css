@@ -215,14 +215,11 @@ label{
 }
 
 .field {
-
+    overflow: scroll;
 }
 
 .table-box {
     height: 80%;
-    overflow: scroll;
-    overflow-x: scroll;
-    overflow-y: scroll;
 }
 
 .dataframe tr th:nth-child(1){
@@ -230,13 +227,15 @@ label{
     vertical-align: middle;
     border: 1px solid black;
     background: #E8E8E8;
+    width:20px;
 }
-
-/*united-columnに対応*/
 
 /* column-barに対応*/
 .columns-bar{
-    overflow: scroll;
+    width:200%;
+    height:20px;
+    margin-left:20px;
+
 }
 #id_columns{
     float: left;
@@ -244,18 +243,17 @@ label{
 /*tableに対応*/
 table.dataframe{
     table-layout: fixed;
-    width:100%;
+    width:203%;
 }
+
 table td{
     vertical-align: middle;
     border: 1px solid black;
     background: #E8E8E8;
-    width: 20%;
     overflow-wrap : break-word;
 }
 /*tableのcolumn名に対応*/
-thead {
-}
+
 
 #make_rdf {
     display: none;
@@ -263,7 +261,6 @@ thead {
 
 thead th{
     background: #E8E8E8;
-    /*white-space: nowrap;*/
 }
 
 

@@ -3,11 +3,10 @@
 {% load static %}
 
 {% block css %}
+
 <style type="text/css">
 #id_columns {width: calc(100%/{{ num }})}
-.columns-bar {margin-left:calc(100%/{{ num }})}
 </style>
-
 {% endblock %}
 
 <!-- Content-->
@@ -28,18 +27,14 @@
             <input type="submit" value="次へ>>" id="next2" name="select">
         </div>
         <div class="field">
-            <div class="united-column">
                 <div class="columns-bar">
                     {% for i in col %}
-                        <div>
                             {{ form.columns }}
-                        </div>
                     {% endfor %}
                 </div>
 
             <div class="table-box" >
                 {{ file | safe }}
-            </div>
             </div>
         </div>
     </form>
