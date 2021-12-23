@@ -30,6 +30,7 @@ def index(request):
                 return render(request, "index.html", {'form': FileUpload, 'message': '※ファイルを選択してください'})
 
             col = df.columns.values.tolist()
+            num = len(col)
             df = df.fillna('')
             df_list = df.to_numpy().tolist()
 
@@ -42,7 +43,8 @@ def index(request):
                 'file': df.to_html(),
                 'form': select_form,
                 'df': df_list,
-                'col': col
+                'col': col,
+                'num': num,
             }
             return render(request, 'processing.html', context)
 
