@@ -263,7 +263,11 @@ thead th{
     background: #E8E8E8;
 }
 
+/************download.htmlに対応**********************/
 
+#download {
+    margin: 70px 0px 0px 30px;
+}
 
 
 
