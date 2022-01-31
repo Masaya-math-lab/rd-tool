@@ -1,29 +1,30 @@
 {% extends 'base.html' %}
 
 {% load static %}
-
+{% block title %}推奨データセット作成ツール{% endblock %}
 <!-- Content-->
-{% block page1_color %}white{% endblock %}
-{% block page2_color %}white{% endblock %}
-{% block page3_color %}#808080{% endblock %}
+{% block check1 %}inline-block{% endblock %}
+{% block check2 %}inline-block{% endblock %}
+{% block check3 %}{{ check3 }}{% endblock %}
 
 {% block content %}
 <div id="download">
     <div class="place-select">
-        <input type="button" value="CSVファイル" onclick="document.getElementById('make_csv').style.display='block';document.getElementById('make_rdf').style.display='none';">
-        <input type="button" value="RDFファイル" onclick="document.getElementById('make_csv').style.display='none';document.getElementById('make_rdf').style.display='block';">
+        <input type="button" value="CSVファイル" id="csv-file-button" onclick="csvButton()">
+        <input type="button" value="RDFファイル" id="rdf-file-button" onclick="rdfButton()">
     </div>
-    <div>
-        <form method="post" enctype="multipart/form-data">
+    <div class="download_form">
+        <form method="post" enctype="multipart/form-data" name="download_form">
             {% csrf_token %}
-            <p>ファイルの名前</p>
-            <div>
-            <!-- onclick-->
+            <p class="download_error_message">{{ message }}</p>
+            <div class="download_name">
+                <p>ファイルの名前</p>
+                <!-- onclick-->
                 <div id="make_csv" style="display:{{ csv_css }}">
-                    {{ form.csv_file }}.csv
+                    {{ form.csv_file }}<span>.csv</span>
                 </div>
                 <div id="make_rdf" style="display:{{ rdf_css }}">
-                    {{ form.rdf_file }}.rdf
+                    {{ form.rdf_file }}.nt
                 </div>
             </div>
             <div class="next-btn">
@@ -32,23 +33,54 @@
                 <input type="hidden" value="{{ df }}", name="df">
                 <input type="hidden" value="{{ select_col }}", name="select_col">
                 <input type="hidden" value="{{ category }}", name="category">
-                <input type="submit" value="作成" name="create">
+                <input type="submit" value="作成" name="create" class="create">
             </div>
         </form>
     </div>
     <div>
     {% if file_name %}
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ file_name }}<input type="submit" value="&#xf019;" class="fas fa-download" name="download">
-            <!-- 非表示データ-->
-            <input type="hidden" value="{{ file_name }}", name="file_name">
-            <input type="hidden" value="{{ col }}", name="col">
-            <input type="hidden" value="{{ df }}", name="df">
-            <input type="hidden" value="{{ select_col }}", name="select_col">
-            <input type="hidden" value="{{ category }}", name="category">
-        </form>
+        <div class="download_button">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p>{{ file_name }}</p><input type="submit" value="&#xf019;" class="fas fa-download download_icon" name="download">
+                <!-- 非表示データ-->
+                <input type="hidden" value="{{ file_name }}", name="file_name">
+                <input type="hidden" value="{{ col }}", name="col">
+                <input type="hidden" value="{{ df }}", name="df">
+                <input type="hidden" value="{{ select_col }}", name="select_col">
+                <input type="hidden" value="{{ category }}", name="category">
+                <input type="hidden" value="{{ type_file }}", name="type_file">
+            </form>
+        </div>
     {% endif %}
     </div>
 </div>
+<script>
+
+function csvButton() {
+    document.download_form.reset()
+    document.getElementById('make_csv').style.display='block'
+    document.getElementById('make_rdf').style.display='none'
+    document.getElementById('csv-file-button').style.backgroundImage='linear-gradient(0deg, #C0C0C0, white)'
+    document.getElementById('rdf-file-button').style.backgroundImage='none'
+    document.getElementById('rdf-file-button').style.color='#adadad'
+    document.getElementById('rdf-file-button').style.borderColor='#adadad'
+    document.getElementById('csv-file-button').style.color='black'
+    document.getElementById('csv-file-button').style.borderColor='black'
+}
+
+function rdfButton() {
+    document.download_form.reset()
+    document.getElementById('make_csv').style.display='none'
+    document.getElementById('make_rdf').style.display='block'
+    document.getElementById('rdf-file-button').style.backgroundImage='linear-gradient(0deg, #C0C0C0, white)'
+    document.getElementById('csv-file-button').style.backgroundImage='none'
+    document.getElementById('csv-file-button').style.color='#adadad'
+    document.getElementById('csv-file-button').style.borderColor='#adadad'
+    document.getElementById('rdf-file-button').style.color='black'
+    document.getElementById('rdf-file-button').style.borderColor='black'
+
+}
+
+</script>
 {% endblock %}

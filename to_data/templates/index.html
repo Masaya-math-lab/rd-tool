@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% load static %}
-
+{% block title %}推奨データセット作成ツール{% endblock %}
 <!-- Content-->
-{% block page1_color %}#808080{% endblock %}
-{% block page2_color %}white{% endblock %}
-{% block page3_color %}white{% endblock %}
+{% block check1 %}none{% endblock %}
+{% block check2 %}none{% endblock %}
+{% block check3 %}none{% endblock %}
 
 {% block content %}
 <div id="index">
     <div class="place-select">
-        <input type="button" value="Web Addressed(URLs)" onclick="document.getElementById('url-input').style.display='block';document.getElementById('file-select').style.display='none';formReset();">
-        <input type="button" value="This Computer" onclick="document.getElementById('url-input').style.display='none';document.getElementById('file-select').style.display='block';formReset();">
+        <input type="button" value="This Computer" id="local-button" onclick="localButton()">
+        <input type="button" value="Web Addressed(URLs)" id="urls-button" onclick="urlButton()">
     </div>
 
     <div class="download">
@@ -19,24 +19,28 @@
             <form method="post" enctype="multipart/form-data" name="upload_form">
                 {% csrf_token %}
                 <div class="data-select">
-                    <div class="error_massage">
-                        <p>{{ message }}</p>
-                    </div>
                     <!-- onclick-->
                         <div id="file-select">
+                            <p id="data-explanation">1. 変換するCSVファイルを選択:</p>
+                            <div class="error_massage">
+                                <p>{{ message }}</p>
+                            </div>
                             {{ form.file }}
                         </div>
 
                         <div id="url-input">
-                            <p id="data-explanation">データをダウンロードするURLを入力してください:</p>
+                            <p id="data-explanation">1. 変換するCSVファイルのURLを入力:</p>
+                            <div class="error_massage">
+                                <p>{{ message }}</p>
+                            </div>
                             {{ form.url }}
                         </div>
                         <div id ="encode-select">
-                            <p>ファイルの文字エンコードを選択してください。</p>
+                            <p>2. ファイルの文字コードを選択:</p>
                             {{form.encode}}
                         </div>
                     <div class="category-select">
-                        <p>作成するデータセットを選択</p>
+                        <p>3. 作成するデータセットを選択:</p>
                         <div class="data-category">
                             {% for field in form.category %}
                                 {{ field }}
@@ -53,9 +57,31 @@
 </div>
 
 <script>
-function formReset() {
+function localButton() {
     document.upload_form.reset()
+    document.getElementById('url-input').style.display='none'
+    document.getElementById('file-select').style.display='block'
+    document.getElementById('local-button').style.backgroundImage='linear-gradient(0deg, #C0C0C0, white)'
+    document.getElementById('urls-button').style.backgroundImage='none'
+    document.getElementById('urls-button').style.color='#adadad'
+    document.getElementById('urls-button').style.borderColor='#adadad'
+    document.getElementById('local-button').style.color='black'
+    document.getElementById('local-button').style.borderColor='black'
+
 }
+
+function urlButton() {
+    document.upload_form.reset()
+    document.getElementById('url-input').style.display='block'
+    document.getElementById('file-select').style.display='none'
+    document.getElementById('urls-button').style.backgroundImage='linear-gradient(0deg, #C0C0C0, white)'
+    document.getElementById('local-button').style.backgroundImage='none'
+    document.getElementById('local-button').style.color='#adadad'
+    document.getElementById('local-button').style.borderColor='#adadad'
+    document.getElementById('urls-button').style.color='black'
+    document.getElementById('urls-button').style.borderColor='black'
+}
+
 </script>
 {% endblock %}
 

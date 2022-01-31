@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}推奨データセット作成ツール|HELP{% endblock %}
+<!-- Content-->
+{% block check1 %}none{% endblock %}
+{% block check2 %}none{% endblock %}
+{% block check3 %}none{% endblock %}
+
+{% block content %}
+    <div id="help">
+        <div class="title_help">
+            <h1>HELP</h1>
+        </div>
+        <div class="content_help">
+            <div class="content_wrapper_help">
+
+                <div class="content_detail_help">
+                    <h3>推奨データセット作成ツールとは</h3>
+                    <p>　推奨データセットとはオープンデータの公開とその利活用を促進することを目的とし、政府として公開を推奨するデータと、そのデータの作成にあたり準拠すべきルールやフォーマット等を取りまとめたものです。推奨データセット作成ツールでは、現在公開されているオープンデータをそのルールやフォーマットに従った形式でCSVファイルやRDFファイルに変換し、作成するツールとなっています。また、データによって基本編と応用編に分けており、現在このツールでは基本編に対応しています。</p>
+                    <div id="content_detail_box1_help">
+                        <h4>■基本編（オープンデータに取り組み始める地方公共団体向け）</h4>
+                        <p>　推奨データセットの対象データの中でも、特にオープンデータに取り組み始める地方公共団体の参考となるようなデータを基本編として位置付けています。</p>
+                        <br>
+                        <h4>■応用編（地方公共団体・民間事業者向け）</h4>
+                        <p>　推奨データセットの対象データの中で、基本編以外のデータを応用編として位置付けています。応用編では、地方公共団体に限らず、民間事業者の保有するデータについても対象としています。</p>
+                    </div>
+                    <p>その他詳細は、下記サイトをご覧下さい。</p>
+                    <a href="https://cio.go.jp/policy-opendata">- 政府CIOポータル オープンデータ</a>
+                </div>
+
+                <div class="content_detail_help">
+                    <h3>使用方法</h3>
+                    <div class="how-to-use_box_help">
+                        <h4>1.ファイルインポート</h4>
+                        <div class="img_help">
+                            <img src="{% static "img/img1.png" %}">
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>① ローカルファイルを選択する場合は[This Computer]</p>
+                            <p>URLファイルを選択する場合は[Web Addressed(URLs)]　を選択して下さい。</p>
+                        </div>
+                        <div class="how-to-use_help">
+                        <p>② 処理をしたいファイルを選択、もしくはURLを入力してください。</p>
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>③ 適当な文字コードを選択して下さい。指定の文字コードでファイルが読み込めない場合はエラーがでます。</p>
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>④ 作成するデータセットを選択して下さい。</p>
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>⑤ すべて選択したら[次へ]を押して下さい。</p>
+                        </div>
+                    </div>
+
+                    <div class="how-to-use_box_help">
+                        <h4>2.カラム選択</h4>
+                        <div class="img_help">
+                            <img src="{% static "img/img1.png" %}">
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>① 各列ごとにカラムを選択して下さい。不要な列がある場合は何も選択せず、[選択して下さい]にしてください。</p>
+                            <p>複数同じカラムがある場合はJSONで記述されます。</p>
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>② 全て選択したことを確認したら[次へ]を押して下さい。</p>
+                        </div>
+                    </div>
+
+                    <div class="how-to-use_box_help">
+                        <h4>3.ファイル出力設定</h4>
+                        <div class="img_help">
+                            <img src="{% static "img/img1.png" %}">
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>① 変換するファイル形式を選択した下さい。RDFファイルはN-Triples（拡張子.nt）の形式で出力されます。</p>
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>② ファイル名を入力してください。</p>
+                        </div>
+                        <div class="how-to-use_help">
+                            <p>③ [作成]を押すとファイルのダウンロードが始まります。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

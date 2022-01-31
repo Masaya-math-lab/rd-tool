@@ -10,8 +10,8 @@ class FileUpload(forms.Form):
     category = forms.ChoiceField(required=True, widget=forms.RadioSelect, choices=var.CATEGORIES, initial='0')
     encode = forms.fields.ChoiceField(
         choices=(
-            ('utf-8', 'utf-8'),
-            ('shift_jis', 'shift_jis')),
+            ('utf-8', 'UTF-8'),
+            ('shift_jis', 'SHIFT_JIS')),
             required = True,
             widget = forms.widgets.RadioSelect,
             initial = 'utf-8')
