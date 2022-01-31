@@ -3,7 +3,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>推奨データ作成ツール</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Style CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -14,7 +14,16 @@
     <div id="wrapper">
         <!-- Header-->
         <header>
-            <p>推奨データセット作成ツール</p>
+            <div class="header_left">
+                <a href="{% url 'to_data:index' %}" class="header_name"><p>推奨データセット作成ツール</p></a>
+            </div>
+            <div class="header_right">
+                <ul>
+                    <li><a href="{% url 'to_data:index' %}">TOP</a></li>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSffwAD5t8Fhl4UvteSVeOtx5pvj96K9t4k3p59cDu7R9wX1mA/viewform">CONTACT</a></li>
+                    <li><a href="{% url 'to_data:help' %}">HELP</a></li>
+                </ul>
+            </div>
         </header>
 
         <div class="content-wrapper">
@@ -22,14 +31,20 @@
             <div class="sidebar">
                 <div class="sidebar-up">
                     <ul>
-                        <li style="color:{% block page1_color %}{% endblock %}">データを取得する</li>
-                        <li style="color:{% block page2_color %}{% endblock %}">データの整形</li>
-                        <li style="color:{% block page3_color %}{% endblock %}">データ出力設定</li>
-                    </ul>
-                </div>
-                <div class="sidebar-down">
-                    <ul>
-                        <li><a href="#">CONTACT</a></li>
+                        <div>
+                            <li>ファイルインポート</li>
+                            <i class="far fa-check-circle sidebar_icon2" style="display: {% block check1 %}{% endblock %}"></i>
+                        </div>
+                        <i class="fas fa-chevron-down sidebar_icon"></i>
+                        <div>
+                            <li>カラム選択</li>
+                            <i class="far fa-check-circle sidebar_icon2" style="display: {% block check2 %}{% endblock %}"></i>
+                        </div>
+                        <i class="fas fa-chevron-down sidebar_icon"></i>
+                        <div>
+                            <li>ファイル出力設定</li>
+                            <i class="far fa-check-circle sidebar_icon2" style="display: {% block check3 %}{% endblock %}"></i>
+                        </div>
                     </ul>
                 </div>
             </div>

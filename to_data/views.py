@@ -8,6 +8,8 @@ import csv,io
 import pandas as pd
 import numpy as np
 from .functions import to_csv
+from .functions import to_rdf
+from .functions import res
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 
@@ -54,23 +56,35 @@ def index(request):
                 'df': request.POST['df'],
                 'col': request.POST['col'],
                 'select_col': request.POST.getlist('columns'),
-                'category': request.POST['category']
+                'category': request.POST['category'],
+                'check3': 'none'
             }
             return render(request, 'download.html', context)
 
         if 'create' in request.POST:
             form = FileName()
             if request.POST['csv_file']:
-                form.fields['csv_file'].initial = request.POST['csv_file']
                 file_name = request.POST['csv_file'] + '.csv'
                 csv_css = 'block'
                 rdf_css = 'none'
+                type_file = 'csv'
 
             elif request.POST['rdf_file']:
-                form.fields['rdf_file'].initial = request.POST['rdf_file']
-                file_name = request.POST['rdf_file'] + '.rdf'
+                file_name = request.POST['rdf_file'] + '.nt'
                 csv_css = 'none'
                 rdf_css = 'block'
+                type_file = 'rdf'
+
+            else:
+                context = {
+                    'form': FileName,
+                    'df': request.POST['df'],
+                    'col': request.POST['col'],
+                    'select_col': request.POST.getlist('select_col'),
+                    'category': request.POST['category'],
+                    'message': '※ファイル名を入力してください'
+                }
+                return render(request, "download.html", context)
 
             context = {
                 'file_name': file_name,
@@ -80,7 +94,9 @@ def index(request):
                 'select_col': request.POST['select_col'],
                 'csv_css': csv_css,
                 'rdf_css': rdf_css,
-                'category': request.POST['category']
+                'category': request.POST['category'],
+                'type_file': type_file,
+                'check3': 'inline-block',
             }
             return render(request, 'download.html', context)
 
@@ -91,11 +107,15 @@ def index(request):
             df = pd.DataFrame(data=list, columns=col)
             category = request.POST['category']
             file_name = request.POST['file_name']
-            response = to_csv(df, category, select_col, file_name)
-            return response
+            sample_df = to_csv(df, category, select_col)
+            if 'csv' in request.POST['type_file']:
+                return res(sample_df, file_name)
+            if 'rdf' in request.POST['type_file']:
+                return to_rdf(sample_df, file_name, category)
 
     else:
         form = FileUpload
         return render(request, "index.html", {'form': form})
 
-
+def help(request):
+    return render(request, "help.html")
