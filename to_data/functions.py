@@ -33,7 +33,7 @@ def to_csv(df, category, select_col):
 def res(sample_df, file_name):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="{}"'.format(file_name)
-    sample_df.to_csv(path_or_buf=response, encoding='utf-8-sig', index=False)
+    sample_df.to_csv(path_or_buf=response, encoding='utf-8', index=False)
     return response
 
 # RDF(N-Triples形式)に変換
