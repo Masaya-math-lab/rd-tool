@@ -2,7 +2,7 @@ import pandas as pd
 from django.http import HttpResponse
 from django.http import FileResponse
 from . import variable as var
-from .to_rdf import AED
+from .to_rdf import AED, CareService
 import io
 
 # データ項目定義書に準ずるデータフレームに変換
@@ -42,6 +42,8 @@ def to_rdf(df, file_name, category):
     df = df.fillna('')
     if category == '0':
         AED.to_rdf(w, df)
+    if category == '1':
+        CareService.to_rdf(w, df)
     response = HttpResponse(w.getvalue(), content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename="{}"'.format(file_name)
     return response
