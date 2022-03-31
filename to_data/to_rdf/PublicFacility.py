@@ -1,4 +1,4 @@
-# 介護サービス事業所一覧
+# 公共施設一覧
 import random
 import string
 
@@ -7,7 +7,6 @@ def to_rdf(w, df):
     dat = string.digits + string.ascii_lowercase
     node = '_:node' + ''.join([random.choice(dat) for i in range(9)]) + 'x'
     node_num = 1
-
     for i in range(len(df)):
         row = df.iloc[i]
         # 都道府県コード又は市区町村コード
@@ -18,49 +17,52 @@ def to_rdf(w, df):
         prefecture = row[2]
         # 市区町村名
         city = row[3]
-        # 介護サービス事業所名称
+        # 名称
         name = row[4]
-        # 介護サービス事業所名称_カナ
+        # 名称_カナ
         name_kana = row[5]
-        # 実施サービス
-        service = [6]
+        #名称_通称
+        name_alias = row[6]
+        #POIコード
+        poi_code = row[7]
         # 住所
-        address = row[7]
+        address = row[8]
         # 方書
-        direction = row[8]
+        direction = row[9]
         # 緯度
-        latitude = row[9]
+        latitude = row[10]
         # 経度
-        longitude = row[10]
+        longitude = row[11]
         # 電話番号
-        phone_number = row[11]
+        phone_number = row[12]
         # 内線番号
-        extension_number = row[12]
-        # FAX番号
-        fax_number = row[13]
+        extension_number = row[13]
         # 法人番号
         corporate_number = row[14]
-        # 法人の名称
+        # 団体名
         corporate_name = row[15]
-        # 事業所番号
-        office_number = row[16]
         # 利用可能曜日
-        day_of_week = row[17]
+        day_of_week = row[16]
+        # 開始時間
+        start_time = row[17]
+        # 終了時間
+        end_time = row[18]
         # 利用可能日時特記事項
-        day_detail = row[18]
-        # 定員
-        capacity = row[19]
+        day_detail = row[19]
+        # 説明
+        explanation = row[20]
+        # バリアフリー情報
+        barrier_free = row[21]
         # URL
-        url = row[20]
+        url = row[22]
         # 備考
-        remark = row[21]
+        remark = row[23]
 
         # 空白ノード作成
         subject = "<?s" + str(i) + ">"
 
         # 書き込み
         w.write(subject + ' <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ' + '<http://imi.go.jp/ns/core/2#施設型> .\n')
-
         if id or prefecture or city:
             w.write(subject + ' <http://imi.go.jp/ns/core/2#メタデータ> ' + f'{node + str(node_num)} .\n')
             node_next_num = node_num + 1
@@ -69,7 +71,6 @@ def to_rdf(w, df):
                         + f'{node + str(node_next_num)}' + ' <http://imi.go.jp/ns/core/2#ID> ' + f'{node + str(node_next_num+1)} .\n'
                         + f'{node + str(node_next_num+1)}' + ' <http://imi.go.jp/ns/core/2#識別値> ' + f'"{id}" .\n')
                 node_next_num += 2
-
             if prefecture or city:
                 w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#発行者> ' + f'{node + str(node_next_num)} .\n'
                         + f'{node + str(node_next_num)}' + ' <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ' + '<http://imi.go.jp/ns/core/2#組織型> .\n'
@@ -80,6 +81,7 @@ def to_rdf(w, df):
                     w.write(f'{node + str(node_next_num+1)}' + ' <http://imi.go.jp/ns/core/2#市区町村> ' + f'"{city}" .\n')
                 node_next_num += 2
             node_num = node_next_num
+            
 
         if no:
             w.write(subject + ' <http://imi.go.jp/ns/core/2#ID> ' + f'{node + str(node_num)} .\n'
@@ -96,8 +98,14 @@ def to_rdf(w, df):
             node_next_num = node_num + 1
             node_num = node_next_num
 
-        if service:
-            w.write(subject + ' <http://imi.go.jp/ns/core/2#種別> ' + f'"{service}" \n')
+        if name_alias:
+            w.write(subject + ' <http://imi.go.jp/ns/core/2#通称> ' + f'"{name_alias}" .\n')
+
+        if poi_code:
+            w.write(subject + ' <http://imi.go.jp/ns/core/2#種別コード> ' + f'{node + str(node_num)} .\n'
+                    + f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#識別値> ' + f'"{poi_code}" .\n')
+            node_next_num = node_num + 1
+            node_num = node_next_num
 
         if address or direction:
             w.write(subject + ' <http://imi.go.jp/ns/core/2#住所> ' + f'{node + str(node_num)} .\n')
@@ -117,31 +125,24 @@ def to_rdf(w, df):
             node_next_num = node_num + 1
             node_num = node_next_num
 
-        if phone_number or extension_number or fax_number or corporate_number or office_number or corporate_name:
+        if phone_number or extension_number or corporate_number or corporate_name:
             w.write(subject + ' <http://imi.go.jp/ns/core/2#連絡先> ' + f'{node + str(node_num)} .\n')
             node_next_num = node_num + 1
             if phone_number:
                 w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#電話番号> ' + f'"{phone_number}" .\n')
             if extension_number:
                 w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#内線番号> ' + f'"{extension_number}" .\n')
-            if fax_number:
-                w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#FAX番号> ' + f'"{fax_number}" .\n')
             if corporate_number:
                 w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#ID> ' + f'{node + str(node_next_num)} .\n'
                         + f'{node + str(node_next_num)}' + ' <http://imi.go.jp/ns/core/2#識別値> ' + f'"{corporate_number}" .\n')
                 node_next_num += 1
-            if office_number:
-                w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#ID> ' + f'{node + str(node_next_num)} .\n'
-                        + f'{node + str(node_next_num)}' + ' <http://imi.go.jp/ns/core/2#識別値> ' + f'"{office_number}" .\n'
-                        + f'{node + str(node_next_num)}' + ' <http://imi.go.jp/ns/core/2#体系> ' + f'{node + str(node_next_num+1)} .\n'
-                        + f'{node + str(node_next_num+1)}' + ' <http://imi.go.jp/ns/core/2#名称> ' + '"事業所番号" .\n')
-                node_next_num += 2
             if corporate_name:
-                w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#名称> ' + f'{node + str(node_next_num)} .\n'
-                        + f'{node + str(node_next_num)}' + ' <http://imi.go.jp/ns/core/2#表記> ' + f'"{corporate_name}" .\n')
-                node_next_num += 1
+                w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#組織> ' + f'{node + str(node_next_num)} .\n'
+                        + f'{node + str(node_next_num)}' + ' <http://imi.go.jp/ns/core/2#名称> ' + f'{node + str(node_next_num+1)} .\n'
+                        + f'{node + str(node_next_num+1)}' + ' <http://imi.go.jp/ns/core/2#表記> ' + f'"{corporate_name}" .\n')
+                node_next_num += 2
             node_num = node_next_num
-        
+
         if day_of_week:
             w.write(subject + ' <http://imi.go.jp/ns/core/2#利用可能時間> ' + f'{node + str(node_num)} .\n'
                     + f'{node + str(node_num)}' + ' <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ' + '<http://imi.go.jp/ns/core/2#定期スケジュール型> .\n'
@@ -150,16 +151,25 @@ def to_rdf(w, df):
             node_next_num = node_num + 1
             node_num = node_next_num
 
-        if day_detail:
+        if start_time or end_time or day_detail:
             w.write(subject + ' <http://imi.go.jp/ns/core/2#利用可能時間> ' + f'{node + str(node_num)} .\n'
-                    + f'{node + str(node_num)}' + ' <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ' + '<http://imi.go.jp/ns/core/2#定期スケジュール型> .\n'
-                    + f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#説明> ' + f'"{day_detail}" .\n')
+                    + f'{node + str(node_num)}' + ' <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ' + '<http://imi.go.jp/ns/core/2#定期スケジュール型> .\n')
+            if start_time:
+                w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#開始時間> ' + f'"{start_time}"^^<http://www.w3.org/2001/XMLSchema#time> .\n')
+            if end_time:
+                w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#終了時間> ' + f'"{end_time}"^^<http://www.w3.org/2001/XMLSchema#time> .\n')
+            if day_detail:
+                w.write(f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#説明> ' + f'"{day_detail}" .\n')
             node_next_num = node_num + 1
             node_num = node_next_num
 
-        if capacity:
-            w.write(subject + ' <http://imi.go.jp/ns/core/2#収容人数> ' + f'{node + str(node_num)} .\n'
-                    + f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#数値> ' + f'"{capacity}"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .\n')
+        if explanation:
+            w.write(subject + ' <http://imi.go.jp/ns/core/2#説明> ' + f'"{explanation}" .\n')
+
+        if barrier_free:
+            w.write(subject + ' <http://imi.go.jp/ns/core/2#記述> ' + f'{node + str(node_num)} .\n'
+                    + f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#種別> ' + '"バリアフリー情報" .\n'
+                    + f'{node + str(node_num)}' + ' <http://imi.go.jp/ns/core/2#説明> ' + f'"{barrier_free}" .\n')
             node_next_num = node_num + 1
             node_num = node_next_num
 
@@ -171,5 +181,6 @@ def to_rdf(w, df):
 
         if remark:
             w.write(subject + ' <http://imi.go.jp/ns/core/2#備考> ' + f'"{remark}" .\n')
+
 
         w.write('\n')

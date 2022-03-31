@@ -268,10 +268,21 @@ label{
     background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
     padding:7px 30px;
     border-color: #adadad;
+    margin-right: 30px;
 }
 
 #back1:hover {
     background-image: -webkit-linear-gradient(top,#e0e0e0 0,#e0e0e0 100%);
+}
+
+#checkbox_message {
+    display: inline;
+}
+
+#checkbox_error {
+    margin-left: 5px;
+    color: red;
+    display: inline;
 }
 
 #next2 {
@@ -508,4 +519,3 @@ thead th{
 .how-to-use_box_help {
     margin-bottom: 150px;
 }
-

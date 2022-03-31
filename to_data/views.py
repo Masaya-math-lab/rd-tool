@@ -10,11 +10,13 @@ import numpy as np
 from .functions import to_csv
 from .functions import to_rdf
 from .functions import res
+from . import variable as var
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 
 def index(request):
     if request.method == 'POST':
+        # ----------index.html----------
         if 'upload' in request.POST:
             # "ThisComputer"
             if request.FILES.get('file'):
@@ -50,17 +52,43 @@ def index(request):
             }
             return render(request, 'processing.html', context)
 
+        # ----------processing.html----------
         if 'select' in request.POST:
+            category = request.POST['category']
+            file = request.POST['file']
+            col = eval(request.POST['col'])
+            df = request.POST['df']
+            num = request.POST['num']
+            # チェックボックスにチェックされた時の処理
+            if 'checkbox' in request.POST:
+                select_col = var.DATASET_COL[request.POST['category']]
+                # エラー処理
+                if len(select_col) != len(col):
+                    select_form = SelectColumns()
+                    select_form.fields['columns'].choices = var.DATASET[request.POST['category']]
+                    context = {
+                        'category': category,
+                        'file': file,
+                        'form': select_form,
+                        'df': df,
+                        'col': col,
+                        'num': num,
+                        'message': '※エラー（ヒント：選択されたカテゴリーの列数とデータの列数が異なります。）'
+                    }
+                    return render(request, 'processing.html', context)
+            else:
+                select_col = request.POST.getlist('columns')
             context = {
                 'form': FileName,
-                'df': request.POST['df'],
-                'col': request.POST['col'],
-                'select_col': request.POST.getlist('columns'),
-                'category': request.POST['category'],
+                'df': df,
+                'col': col,
+                'select_col': select_col,
+                'category': category,
                 'check3': 'none'
             }
             return render(request, 'download.html', context)
 
+        # ----------download.html----------
         if 'create' in request.POST:
             form = FileName()
             if request.POST['csv_file']:
@@ -101,10 +129,10 @@ def index(request):
             return render(request, 'download.html', context)
 
         if 'download' in request.POST:
-            list = eval(request.POST['df'])
+            li = eval(request.POST['df'])
             col = eval(request.POST['col'])
             select_col = eval(request.POST['select_col'])
-            df = pd.DataFrame(data=list, columns=col)
+            df = pd.DataFrame(data=li, columns=col)
             category = request.POST['category']
             file_name = request.POST['file_name']
             sample_df = to_csv(df, category, select_col)

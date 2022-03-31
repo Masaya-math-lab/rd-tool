@@ -21,15 +21,18 @@
         <div class="button-wrapper">
             <input type="button" value="<<最初から戻る" id="back1" onClick="history.go(-1);">
             <!-- 非表示データ-->
+            <input type="hidden" value="{{ file }}", name="file">
             <input type="hidden" value="{{ col }}", name="col">
             <input type="hidden" value="{{ df }}", name="df">
             <input type="hidden" value="{{ category }}", name="category">
+            <input type="hidden" value="{{ num }}", name="num">
+            <input type="checkbox", name="checkbox" id="checkbox" ,value="1", onclick="check()"><p id="checkbox_message">列名・列順はデータ項目定義書に従っている</p><p id="checkbox_error">{{ message }}</p>
             <input type="submit" value="次へ>>" id="next2" name="select">
         </div>
         <div class="field">
                 <div class="columns-bar">
                     {% for i in col %}
-                            {{ form.columns }}
+                        {{ form.columns }}
                     {% endfor %}
                 </div>
 
@@ -39,5 +42,25 @@
         </div>
     </form>
 </div>
+
+<script>
+function check(){
+    let check = document.getElementById('checkbox');
+    let elements = document.getElementsByClassName('form-check-input')
+    if (check.checked) {
+        for(i=0;i<elements.length;i++) {
+            elements[i].style.pointerEvents = 'none'
+            elements[i].style.color = 'rgba(0,0,0, 0.3)'
+        }
+    }
+    else {
+        for(i=0;i<elements.length;i++) {
+            elements[i].style.pointerEvents = 'auto'
+            elements[i].style.color = 'rgba(0,0,0,1)'
+        }
+    }
+}
+
+</script>
 
 {% endblock %}

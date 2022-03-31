@@ -29,7 +29,7 @@ except ImportError:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -147,13 +147,13 @@ LOGGING = {
         # diaryアプリケーションが利用するロガー
         'diary': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
     },
     # ハンドラの設定
     'handlers': {
-        'console':{
-            'level': 'DEBUG',
+        'console': {
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'dev'
         },
