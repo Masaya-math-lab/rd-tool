@@ -11,13 +11,15 @@ class FileUpload(forms.Form):
     encode = forms.fields.ChoiceField(
         choices=(
             ('utf-8', 'UTF-8'),
-            ('shift_jis', 'SHIFT_JIS')),
+            ('shift_jis', 'SHIFT_JIS'),
+            ('cp932', 'CP932')),
             required = True,
             widget = forms.widgets.RadioSelect,
             initial = 'utf-8')
 
 class SelectColumns(forms.Form):
-    columns = forms.ChoiceField(required=True, initial='0')
+    columns = forms.ChoiceField(required=True, initial='0', widget=forms.widgets.Select(attrs={
+            'id': 'id_columns', 'class': 'form-check-input'}))
 
 class FileName(forms.Form):
     csv_file = forms.CharField(required=False)
